@@ -35,11 +35,14 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - WypozyczalniaFilmow - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer class="border-top footer">
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="@Url.Action("StronyStatyczne", "Home", new { nazwa = "Omnie"})"> O mnie </a></li>
+            <li class="nav-item"><a class="nav-link" href="@Url.Action("StronyStatyczne", "Home", new { nazwa = "Kontakt"})"> Kontakt </a></li>
+            <li class="nav-item"><a class="nav-link" href="@Url.Action("StronyStatyczne", "Home", new { nazwa = "Info"})"> Info </a></li>
+        </ul>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
