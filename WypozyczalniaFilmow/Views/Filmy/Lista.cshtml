@@ -1,22 +1,40 @@
-﻿@model IEnumerable<WypozyczalniaFilmow.Models.Film>
-<table>
+﻿@model FilmyKategorii
+@{ 
+
+}
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<h1>3 najnowsze filmy</h1>
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>Tytuł</th>
-            <th>Reżyser</th>
-            <th>Data dodania</th>
-            <th>Cena</th>
+            @foreach (var film in Model.FilmyNajnowsze)
+            {
+            <td>
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container text-center">
+                        <h4>@film.Tytul</h4>
+                        <hr>
+                        <p>@film.Opis</p>
+                        <hr>
+                        <span><b>długość filmu: </b>@film.DlugoscFilmu</span>
+                    </div>
+                </div>
+            </td>
+            }
         </tr>
     </thead>
     <tbody>
-        @foreach (var film in Model)
+        @foreach (var film in Model.FilmyKategoria)
         {
-            <tr>
-                <td>@film.Tytul</td>
-                <td>@film.Rezyser</td>
-                <td>@film.DataDodania.ToString()</td>
-                <td>@film.Cena</td>
-            </tr>
+        <tr>
+            <td>@film.Tytul</td>
+            <td>@film.Rezyser</td>
+            <td>@film.DataDodania.ToString()</td>
+            <td>@film.Cena</td>
+            <td><a href="@Url.Action("Szczegoly", "Filmy" , new { idFilmu = film.Id})">Szczegóły</a></td>
+        </tr>
         }
     </tbody>
 </table>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WypozyczalniaFilmow.DAL;
+using WypozyczalniaFilmow.Models;
 
 namespace WypozyczalniaFilmow.Controllers
 {
@@ -22,7 +23,21 @@ namespace WypozyczalniaFilmow.Controllers
         {
             var kategoria = db.Kategorie.Include("Filmy").Where(k=>k.Nazwa.ToUpper() == nazwaKategorii).Single();
             var Filmy = kategoria.Filmy.ToList();
-            return View(Filmy);
+
+            FilmyKategorii model = new FilmyKategorii();
+            model.Kategoria = kategoria;
+            model.FilmyKategoria = Filmy;
+            model.FilmyNajnowsze = db.Filmy.OrderByDescending(f => f.DataDodania).Take(3);
+            
+            
+
+            return View(model);
+        }
+        public IActionResult Szczegoly(int idFilmu)
+        {
+            var kategoria = db.Kategorie.Find(db.Filmy.Find(idFilmu).KategoriaId);
+            var film = db.Filmy.Find(idFilmu);
+            return View(film);
         }
     }
 }
