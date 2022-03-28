@@ -21,5 +21,6 @@ namespace WypozyczalniaFilmow.Models
         public Kategoria Kategoria { get; set; }
 
         public int DlugoscFilmu { get; set; }
+        public string Plakat { get; set; }
     }
 }

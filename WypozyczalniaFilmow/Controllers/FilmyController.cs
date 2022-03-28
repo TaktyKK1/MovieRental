@@ -29,8 +29,6 @@ namespace WypozyczalniaFilmow.Controllers
             model.FilmyKategoria = Filmy;
             model.FilmyNajnowsze = db.Filmy.OrderByDescending(f => f.DataDodania).Take(3);
             
-            
-
             return View(model);
         }
         public IActionResult Szczegoly(int idFilmu)
@@ -38,6 +36,23 @@ namespace WypozyczalniaFilmow.Controllers
             var kategoria = db.Kategorie.Find(db.Filmy.Find(idFilmu).KategoriaId);
             var film = db.Filmy.Find(idFilmu);
             return View(film);
+        }
+        public IActionResult Wszystkie()
+        {
+            var filmy = db.Filmy.ToList();
+            return View(filmy);
+        }
+        [HttpGet]
+        public ActionResult DodajFilm()
+        {
+            DodawanieViewModel dodaj = new DodawanieViewModel();
+            var kategoria = db.Kategorie.ToList();
+            dodaj.Kategorie = kategoria;
+
+            return View(dodaj);
+        }
+        public ActionResult DodajFilm(DodawanieViewModel obj) {
+            return RedirectToAction("DodajFilm");
         }
     }
 }

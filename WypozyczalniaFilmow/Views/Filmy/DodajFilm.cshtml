@@ -1,0 +1,21 @@
+﻿@model WypozyczalniaFilmow.Models.DodawanieViewModel
+@{ 
+    Layout = "_layout";
+}
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+@using (Html.BeginForm("DodajFilm", "Filmy", FormMethod.Post))
+{
+<table>
+    <tr>
+        <td>Reżyser:</td>
+        <td>@Html.TextBoxFor(f => f.film.Rezyser)</td>
+    </tr>
+    <tr>
+        <td>Tytuł:</td>
+        <td>@Html.TextBoxFor(f => f.film.Tytul)</td>
+    </tr>
+</table>
+} 
