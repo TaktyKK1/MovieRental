@@ -6,16 +6,28 @@
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
 
-@using (Html.BeginForm("DodajFilm", "Filmy", FormMethod.Post))
+@using (Html.BeginForm("DodajFilm", "Filmy", FormMethod.Post,new { @enctype = "multipart/form-data"}))
 {
 <table>
     <tr>
         <td>Reżyser:</td>
-        <td>@Html.TextBoxFor(f => f.film.Rezyser)</td>
+        <td>@Html.TextBoxFor(f => f.film.Rezyser, new { @required = true })</td>
     </tr>
     <tr>
         <td>Tytuł:</td>
-        <td>@Html.TextBoxFor(f => f.film.Tytul)</td>
+        <td>@Html.TextBoxFor(f => f.film.Tytul, new { @required = true })</td>
+    </tr>
+    <tr>
+        @foreach (var kategoria in Model.Kategorie)
+        {
+            <td>@kategoria.Nazwa</td>
+            <td>@Html.RadioButtonFor(f => f.film.KategoriaId, kategoria.Id, new { @required = true})</td>
+        }
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(f => f.Plakat,"Dodaj plakat")</td>
+        <td>@Html.TextBoxFor(f => f.Plakat, new { @type = "file"})</td>
     </tr>
 </table>
+<button type="submit">Dodaj</button>
 } 

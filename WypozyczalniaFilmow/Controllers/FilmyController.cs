@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WypozyczalniaFilmow.DAL;
@@ -12,10 +14,12 @@ namespace WypozyczalniaFilmow.Controllers
     public class FilmyController : Controller
     {
         FilmyContext db;
+        IWebHostEnvironment webHostEnvironment;
 
-        public FilmyController(FilmyContext db)
+        public FilmyController(FilmyContext db, IWebHostEnvironment webHostEnvironment)
         {
             this.db = db;
+            this.webHostEnvironment = webHostEnvironment;
         }
 
 
@@ -51,7 +55,16 @@ namespace WypozyczalniaFilmow.Controllers
 
             return View(dodaj);
         }
+        [HttpPost]
         public ActionResult DodajFilm(DodawanieViewModel obj) {
+            obj.film.DataDodania = DateTime.Now;
+            var filePath = Path.Combine(webHostEnvironment.WebRootPath, "plakaty");
+            var uniquePosterName = Guid.NewGuid() + "_" + obj.Plakat.FileName;
+            var picFilePath = Path.Combine(filePath, uniquePosterName);
+            obj.Plakat.CopyTo(new FileStream(picFilePath, FileMode.Create));
+            obj.film.Plakat = uniquePosterName;
+            db.Filmy.Add(obj.film);
+            db.SaveChanges();
             return RedirectToAction("DodajFilm");
         }
     }
