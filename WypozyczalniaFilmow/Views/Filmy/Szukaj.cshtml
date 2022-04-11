@@ -1,0 +1,27 @@
+﻿@model IEnumerable<WypozyczalniaFilmow.Models.Film>
+Szukana fraza to: @ViewBag.Fraza
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>         
+              <td>
+                            <h4>Tytuł</h4>
+                  </td>
+
+            <td>
+                            <h5>Reżyser</h5>
+                </td>         
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var film in Model)
+        {
+            <tr>
+                <td>@film.Tytul</td>
+                <td>@film.Rezyser</td>
+                <td><a href="@Url.Action("Szczegoly", "Filmy" , new { idFilmu = film.Id})">Szczegóły</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

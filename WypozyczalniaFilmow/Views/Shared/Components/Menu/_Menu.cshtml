@@ -5,5 +5,11 @@
     <li class="nav-item"><a href="@Url.Action("Lista", "Filmy" , new { nazwaKategorii=kategoria.Nazwa})"> @kategoria.Nazwa </a></li>
     }
     <li class="nav-link"><a href="@Url.Action("Wszystkie", "Filmy")"> Wszystkie </a></li>
+    @using (Html.BeginForm("Szukaj", "Filmy"))
+    { 
+    @Html.TextBox("tekst")
+    <button type="submit">Szukaj</button>
+    }
+
 </ul>
 

@@ -1,18 +1,20 @@
 ﻿@model Film
 <link href="~/css/site.css" rel="stylesheet"/>
+<button onclick="window.location.href='@Url.Action("EdytujFilm", "Filmy", new { id = Model.Id }) '">Edytuj Film</button>
 <table class="table table-striped">
     <tbody>
         <tr>
-            <td>@Model.Tytul</td>
+            <td><img width="500" height="600" src="~/plakaty/@Model.Plakat"/></td>
+
             <td>
-                <ul>
-                    <li><img src="~/plakaty/@Model.Plakat"/></li>
-                    <li>@Model.Rezyser</li>
-                    <li>@Model.Opis</li>
-                    <li>@Model.Kategoria</li>
-                    <li>@Model.DataDodania</li>
-                    <li>@Model.Cena</li>
-                </ul>
+            <ul>                   
+            <li>@Model.Tytul</li>
+            <li>@Model.Rezyser</li>
+            <li>@Model.Opis</li>
+            <li>@Model.Kategoria</li>
+            <li>@Model.DataDodania</li>
+            <li>@Model.Cena</li>
+            </ul>
             </td>
         </tr>
 
