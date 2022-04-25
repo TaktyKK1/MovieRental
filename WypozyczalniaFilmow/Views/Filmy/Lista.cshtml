@@ -34,6 +34,8 @@
             <td>@film.DataDodania.ToString()</td>
             <td>@film.Cena</td>
             <td><a href="@Url.Action("Szczegoly", "Filmy" , new { idFilmu = film.Id})">Szczegóły</a></td>
+            <td><a href="@Url.Action("Kup", "Koszyk" , new { id = film.Id})">Dodaj do koszyka</a></td>
+
         </tr>
         }
     </tbody>

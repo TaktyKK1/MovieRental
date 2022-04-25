@@ -1,0 +1,29 @@
+﻿@model WypozyczalniaFilmow.Models.Film
+
+@{Layout = "_Layout";
+
+}
+
+<table>
+    <tr>
+        <th>Nazwa</th>
+        <th>Ilosc</th>
+        <th>Cena</th>
+    </tr>
+    @foreach (var film in ViewBag.cart)
+            {
+        <tr>
+            <td>@film.Film.Tytul</td>
+            <td>@film.Ilosc</td>
+            <td>@film.Film.Cena zł</td>
+            <td><a href="@Url.Action("Usun","Koszyk", new { id = film.Film.Id })">usun</a></td>
+
+
+
+        </tr>
+
+            }
+
+
+</table>
+Razem: @ViewBag.total zł
