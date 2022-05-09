@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WypozyczalniaFilmow.DAL;
 using WypozyczalniaFilmow.Helpers;
+using WypozyczalniaFilmow.Infrastructure;
 using WypozyczalniaFilmow.Models;
 
 namespace WypozyczalniaFilmow.Controllers
@@ -19,11 +20,11 @@ namespace WypozyczalniaFilmow.Controllers
         }
 
 
-[Route("Koszyk")]
+        [Route("Koszyk")]
         public IActionResult Index()
         {
 
-            var cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "koszyk");
+            var cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, Consts.CartSessionKey);
             ViewBag.cart = cart;
             ViewBag.total = cart.Sum(item => item.Film.Cena * item.Ilosc);
 
@@ -32,17 +33,13 @@ namespace WypozyczalniaFilmow.Controllers
         public IActionResult Kup(int id)
         {
             var film = db.Filmy.Find(id);
-            if(SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "koszyk") == null)
             {
                 List<CartItem> cart = new List<CartItem>();
                 cart.Add(new CartItem { Film = film, Ilosc = 1, Wartosc = film.Cena });
-                SessionHelper.SetObjectAsJson(HttpContext.Session, "koszyk", cart);
             }
             else
             {
-                List<CartItem> cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "koszyk");
                 int index = InCart(id);
-                if(index != -1)
                 {
                     cart[index].Ilosc++;
                 }
@@ -50,7 +47,6 @@ namespace WypozyczalniaFilmow.Controllers
                 {
                     cart.Add(new CartItem { Film = film, Ilosc = 1, Wartosc = film.Cena });
                 }
-                SessionHelper.SetObjectAsJson(HttpContext.Session, "koszyk", cart);
             }
 
 
@@ -59,16 +55,9 @@ namespace WypozyczalniaFilmow.Controllers
         }
         public IActionResult Usun(int id)
         {
-            List<CartItem> cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "koszyk");
-            int index = InCart(id);
-            cart.RemoveAt(index);
-            SessionHelper.SetObjectAsJson(HttpContext.Session, "koszyk", cart);
-            return RedirectToAction("Index");
         }
         private int InCart(int id)
         {
-            List<CartItem> cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "koszyk");
-            for(int i = 0; i < cart.Count(); i++)
             {
                 if (cart[i].Film.Id.Equals(id))
                 {

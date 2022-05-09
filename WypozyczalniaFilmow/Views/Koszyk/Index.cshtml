@@ -12,18 +12,37 @@
     </tr>
     @foreach (var film in ViewBag.cart)
             {
-        <tr>
+        <tr id="cartItem-@film.Film.Id">
             <td>@film.Film.Tytul</td>
-            <td>@film.Ilosc</td>
             <td>@film.Film.Cena zł</td>
-            <td><a href="@Url.Action("Usun","Koszyk", new { id = film.Film.Id })">usun</a></td>
 
 
 
         </tr>
 
-            }
+    }
 
 
 </table>
 Razem: @ViewBag.total zł
+
+@section Scripts{
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(".trash").click(function () {
+            var IdCartItem = $(this).data('id');
+            if (IdCartItem != '') {
+
+
+
+            }
+
+
+        });
+
+
+
+    </script>
+
+ }
