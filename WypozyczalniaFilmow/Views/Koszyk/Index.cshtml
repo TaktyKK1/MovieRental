@@ -33,7 +33,15 @@ Razem: @ViewBag.total zł
         $(".trash").click(function () {
             var idCartItem = $(this).data('id');
             if (idCartItem != '') {
-                $.post("/Koszyk/Usun", { "id": idCartItem });
+                $.post("/Koszyk/Usun", { "id": idCartItem }, function (response) {
+                    if (response.itemQuantity == 0) {
+                        $("#cartItem-" + response.itemId).fadeOut("slow");
+                    }
+                    else {
+                        $("#itemQuantity-" + response.itemId).text(response.itemQuantity);
+                    }
+                }
+                );
 
 
             }
