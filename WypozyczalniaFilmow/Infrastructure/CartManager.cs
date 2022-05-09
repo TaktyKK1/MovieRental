@@ -14,7 +14,7 @@ namespace WypozyczalniaFilmow.Infrastructure
         {
             var cart = GetItems(session);
 
-            var thisFilm = cart.Find(i => i.Film.id == id);
+            var thisFilm = cart.Find(i => i.Film.Id == id);
 
             int ilosc = 0;
 
