@@ -31,9 +31,9 @@ Razem: @ViewBag.total zł
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript">
         $(".trash").click(function () {
-            var IdCartItem = $(this).data('id');
-            if (IdCartItem != '') {
-
+            var idCartItem = $(this).data('id');
+            if (idCartItem != '') {
+                $.post("/Koszyk/Usun", { "id": idCartItem });
 
 
             }
