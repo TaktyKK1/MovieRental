@@ -18,7 +18,7 @@
                         <hr>
                         <p>@film.Opis</p>
                         <hr>
-                        <span><b>długość filmu: </b>@film.DlugoscFilmu</span>
+                        <span><b>długość filmu: </b>@film.DlugoscFilmu minut</span>
                     </div>
                 </div>
             </td>
@@ -26,13 +26,23 @@
         </tr>
     </thead>
     <tbody>
+        <thead>
+            <tr>
+                <td>Tytuł</td>
+                <td>Rezyser</td>
+                <td>Data Dodania</td>
+                <td>Cena</td>
+            </tr>
+
+
+        </thead>
         @foreach (var film in Model.FilmyKategoria)
         {
         <tr>
             <td>@film.Tytul</td>
             <td>@film.Rezyser</td>
             <td>@film.DataDodania.ToString()</td>
-            <td>@film.Cena</td>
+            <td>@film.Cena zł</td>
             <td><a href="@Url.Action("Szczegoly", "Filmy" , new { idFilmu = film.Id})">Szczegóły</a></td>
             <td><a href="@Url.Action("Kup", "Koszyk" , new { id = film.Id})">Dodaj do koszyka</a></td>
 

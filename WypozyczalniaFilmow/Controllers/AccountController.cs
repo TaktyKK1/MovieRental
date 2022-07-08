@@ -25,13 +25,14 @@ namespace WypozyczalniaFilmow.Controllers
             try
             {
                 ViewBag.message = "User already registered";
-
+                
+//Register is not really used, just for testing purposes here is a user with username TestUser2 and password Test12 
                 AppUser user = await UserMgr.FindByNameAsync("TestUser2");
                 if (user == null)
                 {
                     user = new AppUser();
                     user.UserName = "TestUser2";
-                    user.Email = "Teest.test";
+                    user.Email = "Test@test.pl";
                     user.FirstName = "Jan";
                     user.LastName = "Kowalski";
 
@@ -55,7 +56,8 @@ namespace WypozyczalniaFilmow.Controllers
         }
         public async Task<IActionResult> Login()
         {
-            var result = await SignInManager.PasswordSignInAsync("TestUser", "Test123!", false, false);
+            //Login is not really used, just for testing purposes here is TestUser2 used
+            var result = await SignInManager.PasswordSignInAsync("TestUser2", "Test12", false, false);
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Home");

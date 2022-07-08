@@ -10,8 +10,8 @@ using WypozyczalniaFilmow.DAL;
 namespace WypozyczalniaFilmow.Migrations
 {
     [DbContext(typeof(FilmyContext))]
-    [Migration("20220509120325_bazaaaaa")]
-    partial class bazaaaaa
+    [Migration("20220708134437_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -228,7 +228,7 @@ namespace WypozyczalniaFilmow.Migrations
                         new
                         {
                             Id = 5,
-                            Nazwa = "Fantasty",
+                            Nazwa = "Fantasy",
                             Opis = "Elementy magiczne i nadprzyrodzone"
                         });
                 });

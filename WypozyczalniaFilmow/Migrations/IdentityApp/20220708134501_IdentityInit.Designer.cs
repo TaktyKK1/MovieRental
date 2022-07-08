@@ -10,7 +10,7 @@ using WypozyczalniaFilmow.DAL;
 namespace WypozyczalniaFilmow.Migrations.IdentityApp
 {
     [DbContext(typeof(IdentityAppContext))]
-    [Migration("20220523105807_IdentityInit")]
+    [Migration("20220708134501_IdentityInit")]
     partial class IdentityInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

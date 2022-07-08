@@ -226,7 +226,7 @@ namespace WypozyczalniaFilmow.Migrations
                         new
                         {
                             Id = 5,
-                            Nazwa = "Fantasty",
+                            Nazwa = "Fantasy",
                             Opis = "Elementy magiczne i nadprzyrodzone"
                         });
                 });

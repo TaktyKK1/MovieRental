@@ -42,7 +42,7 @@ namespace WypozyczalniaFilmow.DAL
                 },
                 new Kategoria{
                     Id = 5,
-                    Nazwa = "Fantasty",
+                    Nazwa = "Fantasy",
                     Opis = "Elementy magiczne i nadprzyrodzone"
                 }
             );
